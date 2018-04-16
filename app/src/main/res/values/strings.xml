@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WorkshopViseu</string>
+    <string name="other_picture">Take Picture</string>
+
+    <string name="facebook_app_id">154122318599912</string>
+    <string name="fb_login_protocol_scheme">fb154122318599912</string>
+</resources>
