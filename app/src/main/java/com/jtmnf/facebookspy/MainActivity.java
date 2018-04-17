@@ -62,45 +62,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Get the call manager
-        callbackManager = CallbackManager.Factory.create();
+        //TODO - callbackManager
 
-        // Get ID for the buttons
+        // Get ID for the buttons and Text
         final LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         final Button otherButton = (Button) findViewById(R.id.other);
-
         text = (TextView) findViewById(R.id.hello);
 
         // Set permissions for this app (when pressing the button)
-        loginButton.setReadPermissions(Arrays.asList("email"));
-        loginButton.setReadPermissions(Arrays.asList("public_profile"));
-
-        // Register button press and do stuff
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                checkUsername(false);
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(MainActivity.this, "CANCEL", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //TODO
 
         // Take other picture if there is a token available
         otherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (AccessToken.getCurrentAccessToken() != null) {
-                    checkUsername(true);
-                } else {
-                    Toast.makeText(MainActivity.this, "Missing the login", Toast.LENGTH_SHORT).show();
-                }
+                //TODO
             }
         });
 
@@ -111,37 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkUsername(final boolean takePicture) {
-        // Start a request for user's information
-        // https://developers.facebook.com/docs/graph-api/reference/user
-        GraphRequest request = GraphRequest.newGraphPathRequest(
-                AccessToken.getCurrentAccessToken(),
-                "/" + AccessToken.getCurrentAccessToken().getUserId(),
-                new GraphRequest.Callback() {
-                    @Override
-                    public void onCompleted(GraphResponse response) {
-                        try {
-                            // Retrieve Facebook response
-                            JSONObject object = response.getJSONObject();
-
-                            if (takePicture) {
-                                // Initiate Camera
-                                dispatchTakePictureIntent();
-                            }
-
-                            text.setText("Welcome " + response.getJSONObject().get("name").toString());
-                        } catch (JSONException e) {
-                        }
-                    }
-                });
-
-        // Pass fields to request
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,link,address,birthday,gender,timezone,work,website," +
-                "email,location,about,age_range,cover,devices,education,favorite_teams," +
-                "first_name,hometown,languages,locale," +
-                "meeting_for,relationship_status,religion,significant_other,sports,updated_time");
-        request.setParameters(parameters);
-        request.executeAsync();
+        //TODO
     }
 
     @Override
@@ -160,13 +106,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sharePhoto() {
-        // Start to sharing the photo
-        SharePhoto photo = new SharePhoto.Builder().setBitmap(image).build();
-        SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
-
-        // Initialize dialog to publish photo
-        ShareDialog shareDialog = new ShareDialog(this);
-        shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
+        //TODO
     }
     
     // Code from: https://developer.android.com/training/camera/photobasics.html
